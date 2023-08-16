@@ -101,6 +101,7 @@ const Search = () => {
         <div className="userChat" onClick={handleSelect}>
           <div className="userChatInfo">
             <span>{user.name}</span>
+            <h2>Test</h2>
           </div>
         </div>
       )}
