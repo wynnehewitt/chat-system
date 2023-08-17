@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* @font-face {
+    font-family: 'Inter';
+    src: url("./fonts/Inter-Bold.ttf")
+} */
+
+/* @font-face {
+    font-family: 'Inter';
+    src: url("./fonts/Inter-Regular.ttf")
+} */
+
+@font-face {
+    font-family: 'Inter';
+    src: url("./fonts/Inter-SemiBold.ttf")
+}
+
+
+
+.inter {
+    font-family: Inter;
+}
+
+/* Login Page */
+.loginForm{
+    background-color: #438174;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginBox{
+    border-radius: 20px;
+    background-color: #FFFFFF;
+}
+
+.inputBox{
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: #438174;
+}
+
+.buttonComponent{
+    background-color: #355851;
+    border-radius: 5px;
+    color: white;
+}
+
+/* ============================ */
+
+
+/* Homepage */
+.homepage{
+    background-color: #438174;
+    height: 100vh;
+    color:#f0f0f0
+}

@@ -1,32 +1,49 @@
-import { addDoc, serverTimestamp, collection } from 'firebase/firestore';
-import React, {useState} from 'react';
-import {auth, db} from '../firebase'
+import { arrayUnion, doc, serverTimestamp, Timestamp, updateDoc } from 'firebase/firestore'
+import React, { useContext, useState } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { UserContext } from '../context/UserContext'
+import { db } from '../firebase'
+import {v4 as uuid} from "uuid";
 
-const style = {
-    form: 'text-xl',
-    button: 'bg-orange-500',
-    input: 'text-gray-800'
-}
 function SendMessage() {
-    const [input, setInput] = useState('');
+    const [text, setText] = useState("")
+    const {currentUser} = useContext(AuthContext)
+    const {data} = useContext(UserContext)
 
-    const sendMessage = async(e) => {
-        e.preventDefault()
-        const {uid, displayName} = auth.currentUser
-        await addDoc(collection,(db, 'messages'), {
-            text:input,
-            name:displayName,
-            uid,
-            timestamp: serverTimestamp()
+    const handleSend = async () => {
+        await updateDoc(doc(db, "chats", data.chatID), {
+            messages: arrayUnion({
+                id : uuid(),
+                text,
+                senderID: currentUser.uid,
+                date: Timestamp.now()
+            })
         })
-    }
-     
+
+        await updateDoc(doc(db, "userChats", currentUser.uid), {
+            [data.chatID + ".lastMessage"]:{
+                text
+            },
+            [data.chatID + ".date"] : serverTimestamp(),
+        });
+
+        await updateDoc(doc(db, "userChats", data.user.uid), {
+            [data.chatID + ".lastMessage"]:{
+                text
+            },
+            [data.chatID + ".date"] : serverTimestamp(),
+        });
+        setText("")
+    };
   return (
-    <form onSubmit = {sendMessage} className = {style.form}>
-        <input value = {input} onChange = {(e) => setInput(e.target.value)}
-        className = {style.input} placeholder = "Your message here..."/>
-        <button className={style.button} type = "submit">Send</button>
-    </form>
+    <div className = "sendMessage">
+        <input type = "text" placeholder='Type your message here...' 
+            onChange = {e => setText(e.target.value)}
+            value = {text}/>
+        <div className = "send">
+            <button onClick={handleSend}>Send</button>
+        </div>
+    </div>
   )
 }
 

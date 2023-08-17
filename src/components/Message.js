@@ -1,23 +1,37 @@
-import React from 'react'
-import { auth } from '../firebase'
+import React, { useContext, useEffect, useRef } from 'react'
+import { AuthContext } from '../context/AuthContext'
+import { UserContext } from '../context/UserContext'
 
-const style = {
-    message: 'flex items-center shadow-xl',
-    name: 'fixed text-gray-600',
-    sent: 'text-gray-500',
-    received: 'text-gray-900'
-}
 
+ 
 function Message({message}) {
-  const messageClass = message.uid === auth.currentUser.uid
-  ? '${style.sent}'
-  : '${style.received}'
+
+  const {currentUser} = useContext(AuthContext)
+  const {data} = useContext(UserContext)
+
+  const ref = useRef()
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({behaviour:"smooth"})
+  }, [message]);
+  const sentTime = message.date.toDate().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+
+
+  console.log(message)
   return (
-    <div>
-        <div className={`${style.message} ${messageClass}`}>
-        <p className={style.name}>{message.name}</p>
-        <p>{message.text}</p>
-      </div>
+    <div ref  = {ref}
+    className = {'message ${message.senderID === currenUser.uid && "owner"}'}>
+        <div className = "messageInfo">
+          <span>{sentTime}</span>
+        </div>
+        <div className='messageContent'>
+            <p>{message.text}</p>
+        </div>
+        
     </div>
   )
 }

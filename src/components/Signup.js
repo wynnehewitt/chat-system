@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from "react";
-import {createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth';
+import {createUserWithEmailAndPassword, onAuthStateChanged} from 'firebase/auth';
 import {auth, db} from "../firebase.js";
-// import {ref, set} from "firebase/database";
 import {doc, setDoc} from "firebase/firestore";
 import {Link, useNavigate} from 'react-router-dom';
 
@@ -52,30 +51,71 @@ function Signup() {
 
 
   return (
-    <div>
-      
-        <input type = "email" placeholder = "Email"
-        onChange = {(event) =>{
-          setRegisterEmail(event.target.value);
-          }}/>
+    <div className='inter loginForm'>
+      <div className = 'loginBox pl-10 pr-10 pb-10 pt-10'>
+        <div className='text-center'>
+        <h1 className='text-3xl font-bold'>Live-Chat System</h1>
+        <h3 className='text-xl font-bold'>Sign Up</h3>
+        
+            <input className='inputBox pl-2 mt-3' 
+            type = "email" placeholder = "Email"
+          onChange = {(event) =>{
+            setRegisterEmail(event.target.value);
+            }}/>
+            <br/>
 
-        <input type = "password" placeholder = "Password"
-        onChange = {(event) =>{
-          setRegisterPassword(event.target.value);
-          }}/>
+          <input className='inputBox pl-2 mt-3' 
+          type = "password" placeholder = "Password"
+          onChange = {(event) =>{
+            setRegisterPassword(event.target.value);
+            }}/>
+            <br/>
 
-        <input type = "name" placeholder = "Name"
-        onChange = {(event) =>{
-          setRegisterName(event.target.value);
-          }}/>
+      <input className='inputBox pl-2 mt-3' 
+          type = "name" placeholder = "Name"
+          onChange = {(event) =>{
+            setRegisterName(event.target.value);
+            }}/>
 
-          <button onClick={signup}>Sign Up</button>
-          {/* <button>Sign Up</button> */}
-          
 
-          <p>Have an account? <Link to="/Login">Login</Link></p>
-          
+            <br/>
+            <button className='buttonComponent mt-5 pt-1 pb-1 pl-1 pr-1 mb-3' 
+            onClick={signup}>Sign Up</button>
+
+            <p>Have an account?  
+              <Link to="/Login">
+                <span className='pl-2 text-[#355851]'>
+                  <u>
+                Login now </u>
+                </span>
+                </Link></p>
+                </div>
+          </div>
     </div>
+    // <div>
+      
+    //     <input type = "email" placeholder = "Email"
+    //     onChange = {(event) =>{
+    //       setRegisterEmail(event.target.value);
+    //       }}/>
+
+    //     <input type = "password" placeholder = "Password"
+    //     onChange = {(event) =>{
+    //       setRegisterPassword(event.target.value);
+    //       }}/>
+
+    //     <input type = "name" placeholder = "Name"
+    //     onChange = {(event) =>{
+    //       setRegisterName(event.target.value);
+    //       }}/>
+
+    //       <button onClick={signup}>Sign Up</button>
+    //       {/* <button>Sign Up</button> */}
+          
+
+    //       <p>Have an account? <Link to="/Login">Login</Link></p>
+          
+    // </div>
   )
 }
 

@@ -1,45 +1,19 @@
-import React, {useState, useEffect, useRef, useContext, createContext} from 'react'
-import {db} from "../firebase"
-import { query, collection, doc, onSnapshot, orderBy, QuerySnapshot} from 'firebase/firestore';
-import Message from './Message';
+import React, { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
+import Messages from './Messages';
 import SendMessage from './SendMessage';
 
-
-const style = {
-    main: 'flex flex-col p-[10px]'
-}
-function Chat() {
-    const [messages, setMessages] = useState([]);
-    const scroll = useRef();
-
-
-    useEffect(() => {
-        const q = query(collection(db, 'messages'), orderBy('timestamp'));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            let messages = [];
-            querySnapshot.forEach((doc) => {
-                messages.push({...doc.data(), id: doc.id});
-            });
-            console.log('Messages: ', messages);
-            
-            setMessages(messages);
-            
-        });
-        return () => unsubscribe();
-    }, []);
-
+function Chat(){
+    const { data } = useContext(UserContext);
   return (
-    <>
-        <main className={style.main}>
-            {messages && messages.map((msg) => (
-                <Message key = {messages.id} message = {msg}/>
-                
-            ))}
-        </main>
+    <div className = "chat">
+        <span>ChatRoom</span>
+        <div className = "chatInfo">
+            <span>{data.user?.name}</span>
+        </div>
+        <Messages/>
         <SendMessage/>
-        <span ref = {scroll}></span>
-        </>
-    
+    </div>
   )
 }
 

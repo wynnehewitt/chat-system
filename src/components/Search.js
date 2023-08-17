@@ -32,15 +32,18 @@ const Search = () => {
       if (querySnapshot.size === 0) {
         setErr(true);
       } else {
-        const userDoc = querySnapshot.docs[0];
-        setUser(userDoc.data());
-        setErr(false); // Clear the error if user data is found
+          setErr(false); // Clear the error if user data is found
       }
+      querySnapshot.forEach((doc) => {
+        setUser(doc.data());
+      });
     } catch (err) {
       setErr(true);
       console.log(err);
     }
   };
+
+
 
   const handleKey = (e) => {
     if(e.code === "Enter"){
@@ -48,6 +51,7 @@ const Search = () => {
       console.log("Searching...")
     }
   };
+
 
   const handleSelect = async () => {
     //check whether the group(chats in firestore) exists, if not create
@@ -57,6 +61,9 @@ const Search = () => {
         : user.uid + currentUser.uid;
     try {
       const res = await getDoc(doc(db, "chats", combinedId));
+
+      const currentUserData = await getDoc(doc(db, "users", currentUser.uid));
+      const currentUserName = currentUserData.data()?.name;
 
       if (!res.exists()) {
         //create a chat in chats collection
@@ -71,16 +78,18 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
 
+
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
-            name: currentUser.name,
-            photoURL: currentUser.photoURL,
+            name: currentUserName,
           },
           [combinedId + ".date"]: serverTimestamp(),
         });
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
 
     setUser(null);
     setUsername("")
@@ -101,7 +110,6 @@ const Search = () => {
         <div className="userChat" onClick={handleSelect}>
           <div className="userChatInfo">
             <span>{user.name}</span>
-            <h2>Test</h2>
           </div>
         </div>
       )}

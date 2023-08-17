@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Navbar from './components/Navbar';
+import Homepage from './components/Homepage';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
           index
           element={
             <ProtectedRoute>
-              <Navbar />
+              <Homepage />
             </ProtectedRoute>
           }
         />
