@@ -1,4 +1,3 @@
-import { doc, getDoc } from 'firebase/firestore';
 import React, { useContext } from 'react'
 import { AuthContext } from '../context/AuthContext'
 import Logout from './Logout'
@@ -9,8 +8,16 @@ function Navbar() {
 
   return (
     <div className='user'>
-        <span>{currentUser.email}</span>
-        <Logout/>
+      <h1 className='text-xl'>Welcome back!</h1>
+        <div className='flex mb-5'>
+          <div className='flex-1'>
+          <span> <u>
+            {currentUser.email} </u></span>
+          </div>
+          <div className='flex-1'>
+            <Logout/>
+          </div>
+        </div>
     </div>
   )
 }

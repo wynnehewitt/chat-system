@@ -1,15 +1,10 @@
 import React, { useContext, useEffect, useRef } from 'react'
-import { AuthContext } from '../context/AuthContext'
-import { UserContext } from '../context/UserContext'
-
+import { AuthContext } from '../context/AuthContext';
 
  
 function Message({message}) {
-
-  const {currentUser} = useContext(AuthContext)
-  const {data} = useContext(UserContext)
-
   const ref = useRef()
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     ref.current?.scrollIntoView({behaviour:"smooth"})
@@ -21,18 +16,20 @@ function Message({message}) {
   });
 
 
+
   console.log(message)
   return (
     <div ref  = {ref}
-    className = {'message ${message.senderID === currenUser.uid && "owner"}'}>
-        <div className = "messageInfo">
-          <span>{sentTime}</span>
-        </div>
-        <div className='messageContent'>
-            <p>{message.text}</p>
-        </div>
-        
-    </div>
+      className = "">
+          <div className='mt-5 messageContent'>
+              <span className={`${message.senderID === currentUser.uid ? "owner" : "sender"}`}>{message.text}</span>
+          </div>
+
+          <div className = "mb-5 messageInfo">
+            <span className='text-xs ml-2'>{sentTime}</span>
+          </div>
+
+          </div>
   )
 }
 

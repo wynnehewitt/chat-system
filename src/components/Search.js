@@ -1,17 +1,9 @@
 import React, { useContext, useState } from "react";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  setDoc,
-  doc,
-  updateDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+import {collection, query, where, getDocs, setDoc, doc, updateDoc, serverTimestamp, getDoc} from "firebase/firestore";
 import { db } from "../firebase";
 import { AuthContext } from "../context/AuthContext";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 const Search = () => {
   const [username, setUsername] = useState("");
   const [user, setUser] = useState(null);
@@ -97,9 +89,9 @@ const Search = () => {
   return (
     <div className="search">
       <div className="searchForm">
-        <input
+        <input className="inputBox mb-3"
           type="text"
-          placeholder="Find a user"
+          placeholder="Search a user"
           onKeyDown={handleKey}
           onChange={(e) => setUsername(e.target.value)}
           value={username}
@@ -107,9 +99,15 @@ const Search = () => {
       </div>
       {err && <span>User not found!</span>}
       {user && (
-        <div className="userChat" onClick={handleSelect}>
-          <div className="userChatInfo">
-            <span>{user.name}</span>
+        <div className="userChatSearch mt-3" onClick={handleSelect}>
+          <div className="flex searchUserInfo">
+          <div className="flex-none mr-3 mb-3">
+            <AccountCircleIcon></AccountCircleIcon>
+          </div>
+            <div className="flex-none">
+              <span>{user.name}</span>
+            </div>
+  
           </div>
         </div>
       )}

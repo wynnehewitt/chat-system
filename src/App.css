@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Responsive design */
+
+@mixin mobile {
+    @media screen and (max-width:480px){
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width:768px){
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media screen and (max-width:1200px){
+        @content;
+    }
+}
+
 
 /* @font-face {
     font-family: 'Inter';
@@ -42,12 +62,13 @@
     border-radius: 5px;
     border-width: 1px;
     border-color: #438174;
+    color: #355851;
 }
 
 .buttonComponent{
     background-color: #355851;
     border-radius: 5px;
-    color: white;
+    color:#FFFFFF
 }
 
 /* ============================ */
@@ -56,6 +77,105 @@
 /* Homepage */
 .homepage{
     background-color: #438174;
-    height: 100vh;
-    color:#f0f0f0
+    color:#f0f0f0;
+}
+
+.chatRoomFlex{
+    background-color: #c1d8d3;
+}
+
+.sidebarClass{
+    background-color: #355851;
+}
+
+/* User Chat in Side bar */
+.chat{
+    color:#355851;
+}
+
+
+.chats{
+    border-width: 1px;
+    border-bottom: #FFFFFF;
+    border-left: #FFFFFF;
+    border-right: #FFFFFF;
+}
+
+
+/* Logout */
+.logoutButton{
+    background-color: #c1d8d3;
+    border-radius: 5px;
+    color: #355851;
+    width: 60px;
+    height:25px;
+
+}
+
+
+.personIcon{
+    width: 40px;
+    height: 40px;
+}
+
+.chatInfo{
+    background-color: #355851;
+    color: #c1d8d3;
+}
+
+
+/* Send button */
+.sendButton{
+    background-color: #355851;
+    border-radius: 5px;
+    color: #FFFFFF;
+    width: 60px;
+    height:25px;
+
+}
+
+.allMessages{
+    background-color: #c1d8d3;
+}
+
+
+
+.chatRoom1{
+    height: calc(100%-160px) ;
+}
+
+.messageInputBox{
+    padding: 21px;
+    background-color: whitesmoke;
+}
+
+.messageInput{
+    background-color: whitesmoke;
+    color:#355851
+}
+
+
+.oneMessage{
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.owner {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.sender {
+    background-color:#355851 ;
+    border-radius: 10px;
+    border-radius: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: #FFFFFF;
 }

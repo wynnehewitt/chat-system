@@ -37,11 +37,17 @@ function SendMessage() {
     };
   return (
     <div className = "sendMessage">
-        <input type = "text" placeholder='Type your message here...' 
-            onChange = {e => setText(e.target.value)}
-            value = {text}/>
-        <div className = "send">
-            <button onClick={handleSend}>Send</button>
+        <div className='flex'>
+            <div className='flex-none ml-5 mr-5'>
+                <input className='messageInput'
+                    type = "text" placeholder='Type your message here...' 
+                    onChange = {e => setText(e.target.value)}
+                    value = {text}/>
+            </div>
+        <div className = "flex-none send">
+            <button className='sendButton'
+                    onClick={handleSend}>Send</button>
+        </div>
         </div>
     </div>
   )
