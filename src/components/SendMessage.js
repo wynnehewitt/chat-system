@@ -41,7 +41,7 @@ function SendMessage() {
     <div className = "sendMessage">
         <div className='flex'>
             <div className='flex-none ml-5 mr-5'>
-                <input className='messageInput'
+                <input className='messageInput w-80'
                         type = "text" placeholder='Type your message here...' 
                         onChange = {e => setText(e.target.value)}
                         value = {text}/>

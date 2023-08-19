@@ -30,7 +30,7 @@ const Chats = () => {
   };
 
   return (
-    <div className="chats pt-3 pl-3 pr-3 pb-3 ">
+    <div className="chats overflow-y-scroll h-60 pt-3 pl-3 pr-3 pb-3 mb-5">
       <h3 className="text-xl mb-3">My Chats</h3>
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div

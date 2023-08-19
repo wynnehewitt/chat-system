@@ -89,7 +89,7 @@ const Search = () => {
   return (
     <div className="search">
       <div className="searchForm">
-        <input className="inputBox mb-3 pl-3"
+        <input className="inputBox mb-3 pl-3 "
           type="text"
           placeholder="Search a user"
           onKeyDown={handleKey}

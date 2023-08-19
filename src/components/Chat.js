@@ -2,25 +2,27 @@ import React, { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import Messages from './Messages';
 import SendMessage from './SendMessage';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 function Chat() {
   const { data } = useContext(UserContext);
   
   return (
-    <div className="flex flex-col h-full">
-  <div className="chat flex-col h-2/3">
-    <div className="chatInfo pl-5 pt-2 h-10">
-      <span className="text-xl text-[#FFFFFF]">{data.user?.name}</span>
-    </div>
+    <div className="flex flex-col">
+      <div className="chat rounded flex-col">
+        <div className="chatInfo rounded-tr-lg items-center pl-5 pt-1 h-10">
+          <span className='text-xl'><AccountCircleIcon></AccountCircleIcon></span>
+          <span className="ml-3 text-xl">{data.user?.name}</span>
+        </div>
 
-    <div className="flex-none pl-5 allMessages">
-      <Messages />
-    </div>
-  </div>
+        <div className="allMessages overflow-y-scroll h-80 pl-5">
+          <Messages />
+        </div>
+      </div>
 
-  <div className="flex-none messageInputBox h-1/3">
-    <SendMessage />
-  </div>
+      <div className="messageInputBox rounded-br-lg p-5 flex-none">
+        <SendMessage />
+      </div>
 </div>
   )
 }

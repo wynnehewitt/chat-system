@@ -2,26 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Responsive design */
-
-@mixin mobile {
-    @media screen and (max-width:480px){
-        @content;
-    }
-}
-
-@mixin tablet {
-    @media screen and (max-width:768px){
-        @content;
-    }
-}
-
-@mixin laptop {
-    @media screen and (max-width:1200px){
-        @content;
-    }
-}
-
 
 /* @font-face {
     font-family: 'Inter';
@@ -80,26 +60,15 @@
     color:#292929;
 }
 
-.chatRoomFlex{
-    background-color: #c1d8d3;
-}
 
 .sidebarClass{
     background-color: #FFFFFF;
 }
 
 /* User Chat in Side bar */
-.chat{
-    color:#355851;
-}
 
 
 .chats{
-    /* border-width: 1px;
-    border-bottom: #FFFFFF;
-    border-left: #FFFFFF;
-    border-right: #FFFFFF;
-    border-color: #292929; */
     background-color: #EFF1F5;
     border-radius: 20px;
 }
@@ -130,8 +99,8 @@
 }
 
 .chatInfo{
+    color: #292929;
     background-color: #355851;
-    color: #c1d8d3;
 }
 
 
@@ -145,18 +114,7 @@
 
 }
 
-.allMessages{
-    background-color: #c1d8d3;
-}
-
-
-
-.chatRoom1{
-    height: calc(100%-160px) ;
-}
-
 .messageInputBox{
-    padding: 21px;
     background-color: whitesmoke;
 }
 
@@ -189,4 +147,11 @@
     padding-top: 7px;
     padding-bottom: 7px;
     color: #FFFFFF;
+}
+
+
+/* Chat Side */
+.chatRoomFlex{
+    background-color: #c1d8d3;
+    border-radius: 20px;
 }
