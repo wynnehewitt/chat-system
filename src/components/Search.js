@@ -46,7 +46,7 @@ const Search = () => {
 
 
   const handleSelect = async () => {
-    //check whether the group(chats in firestore) exists, if not create
+    // check if the private chat exists
     const combinedId =
       currentUser.uid > user.uid
         ? currentUser.uid + user.uid
@@ -58,10 +58,10 @@ const Search = () => {
       const currentUserName = currentUserData.data()?.name;
 
       if (!res.exists()) {
-        //create a chat in chats collection
+        // add new data to the chats collection
         await setDoc(doc(db, "chats", combinedId), { messages: [] });
 
-        //create user chats
+        // update information of the current user
         await updateDoc(doc(db, "userChats", currentUser.uid), {
           [combinedId + ".userInfo"]: {
             uid: user.uid,
@@ -70,7 +70,7 @@ const Search = () => {
           [combinedId + ".date"]: serverTimestamp(),
         });
 
-
+        // update information for the user that is being sent the messages
         await updateDoc(doc(db, "userChats", user.uid), {
           [combinedId + ".userInfo"]: {
             uid: currentUser.uid,
@@ -89,7 +89,7 @@ const Search = () => {
   return (
     <div className="search">
       <div className="searchForm">
-        <input className="inputBox mb-3"
+        <input className="inputBox mb-3 pl-3"
           type="text"
           placeholder="Search a user"
           onKeyDown={handleKey}

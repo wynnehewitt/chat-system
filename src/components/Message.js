@@ -15,8 +15,6 @@ function Message({message}) {
     hour12: false,
   });
 
-
-
   console.log(message)
   return (
     <div ref  = {ref}

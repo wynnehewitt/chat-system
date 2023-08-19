@@ -20,6 +20,7 @@ function SendMessage() {
             })
         })
 
+        // update the last message of the private chat in the current user collection
         await updateDoc(doc(db, "userChats", currentUser.uid), {
             [data.chatID + ".lastMessage"]:{
                 text
@@ -27,6 +28,7 @@ function SendMessage() {
             [data.chatID + ".date"] : serverTimestamp(),
         });
 
+        // update the last message of the private chat in the other user collection
         await updateDoc(doc(db, "userChats", data.user.uid), {
             [data.chatID + ".lastMessage"]:{
                 text
@@ -40,9 +42,9 @@ function SendMessage() {
         <div className='flex'>
             <div className='flex-none ml-5 mr-5'>
                 <input className='messageInput'
-                    type = "text" placeholder='Type your message here...' 
-                    onChange = {e => setText(e.target.value)}
-                    value = {text}/>
+                        type = "text" placeholder='Type your message here...' 
+                        onChange = {e => setText(e.target.value)}
+                        value = {text}/>
             </div>
         <div className = "flex-none send">
             <button className='sendButton'

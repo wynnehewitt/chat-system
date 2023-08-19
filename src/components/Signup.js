@@ -24,7 +24,7 @@ function Signup() {
 
     const signup = async () =>{
       try{
-        //return a promise
+        // return a promise if all the details are provided
         const user = await createUserWithEmailAndPassword(
           auth,
           registerEmail,
@@ -34,6 +34,7 @@ function Signup() {
         navigate("/")
         console.log(user);
 
+        // add new data to the users collection
         await setDoc(doc(db, "users", user.user.uid), {
           uid: user.user.uid,
           email: registerEmail,
@@ -41,6 +42,7 @@ function Signup() {
           name: registerName
         });
 
+        // add new data to the userChats collection
         await setDoc(doc(db, "userChats", user.user.uid), {});
         navigate("/");
 
@@ -58,17 +60,17 @@ function Signup() {
         <h3 className='text-xl font-bold'>Sign Up</h3>
         
             <input className='inputBox pl-2 mt-3' 
-            type = "email" placeholder = "Email"
-          onChange = {(event) =>{
-            setRegisterEmail(event.target.value);
-            }}/>
+                    type = "email" placeholder = "Email"
+                    onChange = {(event) =>{
+                    setRegisterEmail(event.target.value);
+                    }}/>
             <br/>
 
           <input className='inputBox pl-2 mt-3' 
-          type = "password" placeholder = "Password"
-          onChange = {(event) =>{
-            setRegisterPassword(event.target.value);
-            }}/>
+                  type = "password" placeholder = "Password"
+                  onChange = {(event) =>{
+                    setRegisterPassword(event.target.value);
+                    }}/>
             <br/>
 
       <input className='inputBox pl-2 mt-3' 
@@ -76,7 +78,6 @@ function Signup() {
           onChange = {(event) =>{
             setRegisterName(event.target.value);
             }}/>
-
 
             <br/>
             <button className='buttonComponent mt-5 pt-1 pb-1 pl-1 pr-1 mb-3' 
@@ -92,30 +93,6 @@ function Signup() {
                 </div>
           </div>
     </div>
-    // <div>
-      
-    //     <input type = "email" placeholder = "Email"
-    //     onChange = {(event) =>{
-    //       setRegisterEmail(event.target.value);
-    //       }}/>
-
-    //     <input type = "password" placeholder = "Password"
-    //     onChange = {(event) =>{
-    //       setRegisterPassword(event.target.value);
-    //       }}/>
-
-    //     <input type = "name" placeholder = "Name"
-    //     onChange = {(event) =>{
-    //       setRegisterName(event.target.value);
-    //       }}/>
-
-    //       <button onClick={signup}>Sign Up</button>
-    //       {/* <button>Sign Up</button> */}
-          
-
-    //       <p>Have an account? <Link to="/Login">Login</Link></p>
-          
-    // </div>
   )
 }
 

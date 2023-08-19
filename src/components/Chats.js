@@ -30,10 +30,11 @@ const Chats = () => {
   };
 
   return (
-    <div className="chats pt-3">
+    <div className="chats pt-3 pl-3 pr-3 pb-3 ">
+      <h3 className="text-xl mb-3">My Chats</h3>
       {Object.entries(chats)?.sort((a,b)=>b[1].date - a[1].date).map((chat) => (
         <div
-          className="userChat"
+          className="userChat pt-3"
           key={chat[0]}
           onClick={() => handleSelect(chat[1].userInfo)}>
           <div className="userChatInfo">
@@ -43,7 +44,7 @@ const Chats = () => {
             </div>
             <div className="flex-none">
             <span>{chat[1].userInfo.name}</span>
-            <p className="text-gray-300 text-xs">{chat[1].lastMessage?.text}</p>
+            <p className="text-gray-400 text-xs">{chat[1].lastMessage?.text}</p>
             </div>
             </div>
           </div>

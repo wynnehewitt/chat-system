@@ -16,7 +16,7 @@ function Logout() {
   return (
     <div>
         <button className = "logoutButton text-xs" 
-        onClick={logout}>Log Out</button>
+                onClick={logout}>Log Out</button>
     </div>
   )
 }
